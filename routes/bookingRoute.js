@@ -13,8 +13,7 @@ router.post("/booking/create", async (req, res) => {
   const {
     firstName,
     lastName,
-    pickUpAgency,
-    dropOffAgency,
+    agency,
     vehiculeName,
     vehiculePicture,
     pickUpDate,
@@ -30,10 +29,7 @@ router.post("/booking/create", async (req, res) => {
         firstName: firstName,
         lastName: lastName,
       },
-      agency: {
-        pickUp: pickUpAgency,
-        dropOff: dropOffAgency,
-      },
+      agency,
       vehicule: {
         name: vehiculeName,
         picture: vehiculePicture,

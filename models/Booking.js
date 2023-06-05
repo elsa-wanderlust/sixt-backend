@@ -10,10 +10,7 @@ const Booking = mongoose.model("Bookings", {
     firstName: String,
     lastName: String,
   },
-  agency: {
-    pickUp: String,
-    dropOff: String,
-  },
+  agency: String,
   vehicule: {
     name: String,
     picture: String,

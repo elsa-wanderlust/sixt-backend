@@ -5,14 +5,26 @@ const axios = require("axios");
 
 // ROUTE 1 - GET LIST OF LOCATIONS / AGENCIES
 router.get("/agency/list", async (req, res) => {
+  console.log("requested1");
+  // receive the query and split between each spaces entered
+  const queryTab = req.query.q.split(" ");
+  let query = "q=";
+  for (let i = 0; i < queryTab.length; i++) {
+    if (i === 0) {
+      query = query + queryTab[i] + "%20";
+    } else if (i === queryTab.length - 1) {
+      query = query + queryTab[i];
+    } else {
+      query = query + queryTab[i] + "%20";
+    }
+  }
   // -------- DEV ONLY : start --------
   // add security filter = needs to be 3 letters minimum
-  const tempfilter = "q=san%20fran";
   // -------- DEV ONLY : end --------
 
   try {
     const agencyList = await axios.get(
-      `https://lereacteur-bootcamp-api.herokuapp.com/api/sixt/locations?${tempfilter}`,
+      `https://lereacteur-bootcamp-api.herokuapp.com/api/sixt/locations?${query}`,
       {
         headers: {
           authorization: `Bearer ${process.env.SIXT_API_KEY}`,
@@ -30,17 +42,13 @@ router.get("/agency/list", async (req, res) => {
 
 // ROUTE 2 - GET OFFERS FOR SPECIFIC AGENCIES
 router.get("/agency/offer", async (req, res) => {
+  console.log("requested2");
   // -------- DEV ONLY : start --------
   // add security filter = all fields must be filled // pick up date > now // drop off date > pick up date //
-  // pickup and drop off station can be different?
-  const tempPickUpStation2 = "L_ChIJIQBpAG2ahYAR_6128GcTUEo";
-  const tempDropOffStation2 = "L_ChIJIQBpAG2ahYAR_6128GcTUEo";
-  const tempPickUpDate = "2023-06-28T12:30:00";
-  const tempDropOffDate = "2023-06-30T08:30:00";
   // -------- DEV ONLY : end --------
   try {
     const agencyOffer = await axios.get(
-      `https://lereacteur-bootcamp-api.herokuapp.com/api/sixt/rentaloffers?pickupStation=${tempPickUpStation2}&returnStation=${tempPickUpStation2}&pickupDate=${tempPickUpDate}&returnDate=${tempDropOffDate}`,
+      `https://lereacteur-bootcamp-api.herokuapp.com/api/sixt/rentaloffers?pickupStation=${req.query.pickupStation}&returnStation=${req.query.pickupStation}&pickupDate=${req.query.pickupDate}&returnDate=${req.query.returnDate}`,
       {
         headers: {
           authorization: `Bearer ${process.env.SIXT_API_KEY}`,
@@ -62,11 +70,11 @@ router.post("/agency/offerDetails", async (req, res) => {
   // add security filter : need offer ID is required
   const tempOfferId = "a0e22c51-2c4a-42a9-a2a7-938975c53b17-LTAR";
   // -------- DEV ONLY : end --------
-
+  console.log("requested3");
   try {
     const agencyOffer = await axios.post(
       `https://lereacteur-bootcamp-api.herokuapp.com/api/sixt/rentalconfigurations/create`,
-      { offerId: tempOfferId },
+      { offerId: req.body.id },
       {
         headers: {
           authorization: `Bearer ${process.env.SIXT_API_KEY}`,
