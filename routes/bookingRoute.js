@@ -10,20 +10,33 @@ const { createConfCode } = require("../utils/createConfirmationCode");
 
 // ROUTE 1 - CREATE A NEW BOOKING
 router.post("/booking/create", async (req, res) => {
-  const {
-    firstName,
-    lastName,
-    agency,
-    vehiculeName,
-    vehiculePicture,
-    pickUpDate,
-    dropOffDate,
-    dayPrice,
-    currency,
-    extraFees,
-    additionalCharges,
-  } = req.body;
   try {
+    const {
+      firstName,
+      lastName,
+      agency,
+      vehiculeName,
+      vehiculePicture,
+      pickUpDate,
+      dropOffDate,
+      dayPrice,
+      currency,
+      extraFees,
+      additionalCharges,
+    } = req.body;
+    if (
+      !firstName ||
+      !lastName ||
+      !agency ||
+      !vehiculeName ||
+      !vehiculePicture ||
+      !pickUpDate ||
+      !dropOffDate ||
+      !dayPrice ||
+      !currency
+    ) {
+      return res.status(400).json({ message: "missing parameter(s)" });
+    }
     const newBooking = new Booking({
       client: {
         firstName: firstName,
@@ -56,10 +69,10 @@ router.post("/booking/create", async (req, res) => {
     });
     res.status(200).json(confirmationCode);
   } catch (error) {
-    console.error(error);
+    console.error(error.message);
     res
-      .status(error.status || 500) // ELSA TBD
-      .json({ message: error.message || "Internal Server Error" }); // ELSA TBD
+      .status(error.status || 500)
+      .json({ message: error.message || "Internal Server Error" });
   }
 });
 
@@ -70,9 +83,7 @@ router.get("/booking/all", async (req, res) => {
     res.status(200).json(allBookings);
   } catch (error) {
     console.error(error);
-    res
-      .status(error.status || 500) // ELSA TBD
-      .json({ message: error.message || "Internal Server Error" }); // ELSA TBD
+    res.status(500).json({ message: "Internal Server Error" });
   }
 });
 
@@ -82,10 +93,10 @@ router.delete("/booking/delete/:id", async (req, res) => {
     const bookingDeleted = await Booking.findByIdAndDelete(req.params.id);
     res.status(200).json(bookingDeleted);
   } catch (error) {
-    console.error(error);
-    res
-      .status(error.status || 500) // ELSA TBD
-      .json({ message: error.message || "Internal Server Error" }); // ELSA TBD
+    if (error.message.slice(0, 23) === "Cast to ObjectId failed") {
+      res.status(400).json({ message: "no booking matching ID provided" });
+    }
+    res.status(500).json({ message: "Internal Server Error" });
   }
 });
 
