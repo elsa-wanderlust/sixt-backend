@@ -5,7 +5,6 @@ const axios = require("axios");
 
 // ROUTE 1 - GET LIST OF LOCATIONS / AGENCIES
 router.get("/agency/list", async (req, res) => {
-  console.log("requested1");
   // receive the query and split between each spaces entered
   const queryTab = req.query.q.split(" ");
   let query = "q=";
@@ -42,7 +41,6 @@ router.get("/agency/list", async (req, res) => {
 
 // ROUTE 2 - GET OFFERS FOR SPECIFIC AGENCIES
 router.get("/agency/offer", async (req, res) => {
-  console.log("requested2");
   // -------- DEV ONLY : start --------
   // add security filter = all fields must be filled // pick up date > now // drop off date > pick up date //
   // -------- DEV ONLY : end --------
@@ -70,7 +68,6 @@ router.post("/agency/offerDetails", async (req, res) => {
   // add security filter : need offer ID is required
   const tempOfferId = "a0e22c51-2c4a-42a9-a2a7-938975c53b17-LTAR";
   // -------- DEV ONLY : end --------
-  console.log("requested3");
   try {
     const agencyOffer = await axios.post(
       `https://lereacteur-bootcamp-api.herokuapp.com/api/sixt/rentalconfigurations/create`,

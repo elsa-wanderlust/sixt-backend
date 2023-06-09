@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const Booking = mongoose.model("Bookings", {
-  bookingDate: {
+  dateOfBooking: {
     type: Date,
     default: Date.now,
   },
@@ -23,7 +23,7 @@ const Booking = mongoose.model("Bookings", {
     dayPrice: { amount: Number, currency: String },
     extraFees: [
       {
-        name: String,
+        title: String,
         price: {
           amount: Number,
           unit: String,
@@ -33,7 +33,7 @@ const Booking = mongoose.model("Bookings", {
     ],
     additionalCharges: [
       {
-        name: String,
+        title: String,
         price: {
           amount: Number,
           unit: String,
