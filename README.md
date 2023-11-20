@@ -1,4 +1,22 @@
-## AGENCY
+## LOCAL SET UP 👨‍💻
+
+`npm install ` or `npm i` to add the pkgs
+
+The frontend repo is also [available](https://github.com/elsa-wanderlust/sixt-front)
+
+Database: MongoDB
+
+![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
+
+## ONLINE 🌏
+
+server hosted on Northflank
+
+deployed via Netlify [here](https://elsa-letallieur-sixt.netlify.app/)
+
+![Netlify](https://img.shields.io/badge/netlify-%23000000.svg?style=for-the-badge&logo=netlify&logoColor=#00C7B7)
+
+## AGENCIES ROUTES
 
 ### /agency/list (GET)
 
@@ -36,7 +54,7 @@ Receive details of an offer
 <br>
 <br>
 
-## BOOKING
+## BOOKING ROUTES
 
 ### /booking/create (POST)
 
@@ -77,3 +95,5 @@ Detele a booking
 
 <br>
 <br>
+
+Reach out [here](https://github.com/elsa-wanderlust/sixt-backend/issues) if any question!
