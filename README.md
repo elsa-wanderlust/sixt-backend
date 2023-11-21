@@ -1,25 +1,37 @@
-## SET UP 👨‍💻
+# SET UP 👨‍💻
 
-```bash
+**1. clone the project**
+
+```
+git clone https://github.com/elsa-wanderlust/sixt-backend.git
+```
+
+**2. install packages and their dependencies**
+
+```
 npm install
 ```
 
 or
 
-```bash
+```
 npm i
 ```
 
-to install all the packages
+**3. start the server**
 
-The frontend repo is also [available](https://github.com/elsa-wanderlust/sixt-front)
+```bash
+npx nodemon index.js
+```
+
+The frontend repo is also available [here](https://github.com/elsa-wanderlust/sixt-front)
 
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
 ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
 ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
 
-## ONLINE 🌏
+# ONLINE 🌏
 
 server hosted on Northflank
 
@@ -27,9 +39,9 @@ deployed via Netlify [here](https://elsa-letallieur-sixt.netlify.app/)
 
 ![Netlify](https://img.shields.io/badge/netlify-%23000000.svg?style=for-the-badge&logo=netlify&logoColor=#00C7B7)
 
-## AGENCIES ROUTES
+# AGENCIES ROUTES
 
-### /agency/list (GET)
+## /agency/list (GET)
 
 Get a list of agency/location
 
@@ -40,7 +52,7 @@ Get a list of agency/location
 <br>
 <br>
 
-### /agency/offer (GET)
+## /agency/offer (GET)
 
 Get the list of vehicules available in one location
 
@@ -54,7 +66,7 @@ Get the list of vehicules available in one location
 <br>
 <br>
 
-### /agency/offerDetails (POST)
+## /agency/offerDetails (POST)
 
 Receive details of an offer
 
@@ -65,9 +77,9 @@ Receive details of an offer
 <br>
 <br>
 
-## BOOKING ROUTES
+# BOOKING ROUTES
 
-### /booking/create (POST)
+## /booking/create (POST)
 
 Get a list of agency/location
 
@@ -89,14 +101,14 @@ Get a list of agency/location
 <br>
 <br>
 
-### /booking/all (GET)
+## /booking/all (GET)
 
 Get a list of all the bookings
 
 <br>
 <br>
 
-### /booking/delete/:id (DELETE)
+## /booking/delete/:id (DELETE)
 
 Detele a booking
 
